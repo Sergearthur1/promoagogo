@@ -67,7 +67,6 @@ option_8 = st.sidebar.checkbox("Nutrition")
 option_9 = st.sidebar.checkbox("Finance")
 st.sidebar.markdown("----------------------------")
 st.sidebar.write("__Admninistrateur__")
-st.sidebar.markdown("----------------------------")
 if st.sidebar.button("update data"):
     if not check_password():
         st.stop()
@@ -102,7 +101,7 @@ if (st.sidebar.button("update categories")) or st.session_state["in_cat_update"]
         st.session_state["in_cat_update"] = True
         cat_updater()
         st.sidebar.write("categories updated!")
-           
+st.sidebar.markdown("----------------------------")          
 selected_rows = []
 for index,row in st.session_state["full_data"].iterrows():
     selected_tamp = False
