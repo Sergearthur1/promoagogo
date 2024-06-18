@@ -207,7 +207,7 @@ def get_new_code_promo(api_key):
 def inverse_percentile(arr,num):
     arr = sorted(arr)
     i_arr = [i for i, x in enumerate(arr) if x > num]
-    return i_arr[0] / len(arr) if len(i_rr) > 0 else 1
+    return i_arr[0] / len(arr) if len(i_arr) > 0 else 1
 
 def sort_reduction(x, list_reduction):
     if pd.isna(x):
