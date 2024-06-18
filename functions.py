@@ -17,8 +17,9 @@ def get_channel_name(url):
 def get_trends_url():
     url = "https://www.youtube.com/feed/trending"
     r = requests.get(url)
-    soup = BeautifulSoup(r.text, "lxml")
-    text_tamp = soup.find("body").text
+    #soup = BeautifulSoup(r.text, "lxml")
+    #text_tamp = soup.find("body").text
+    text_tamp = r.text
     last_index = 0
     last_index += text_tamp[last_index:].find('"videoId"')
     breaked = False
