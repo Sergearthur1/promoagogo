@@ -71,8 +71,8 @@ if st.sidebar.button("update data"):
     if not check_password():
         st.stop()
     else:
-        openai.api_key = st.secrets["api_key"]
-        df_cd_promo = get_new_code_promo()
+        api_key = st.secrets["api_key"]
+        df_cd_promo = get_new_code_promo(api_key)
         old_df_cd_promo = pd.read_csv(f"{os.getcwd()}/promos.csv",index_col=False)
         if df_cd_promo.empty:
             new_df_cd_promo = old_df_cd_promo
