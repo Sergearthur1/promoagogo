@@ -6,7 +6,6 @@ import os
 from openai import OpenAI
 import openai
 import numpy as np
-from scipy import stats
 
 def get_description(url):
     r = requests.get(url)
@@ -204,11 +203,16 @@ def get_new_code_promo():
     df_historical_urls.to_csv(f"{os.getcwd()}/historical_urls.csv", index=False)
     return df_new_code_promo
 
+def inverse_percentile(arr,num):
+    arr = sorted(arr)
+    i_arr = [i for i, x in enumerate(arr) if x > num]
+    return i_arr[0] / len(arr) if len(i_rr) > 0 else 1
+
 def sort_reduction(x, list_reduction):
     if pd.isna(x):
         return 0
     else:
-        return stats.percentileofscore(list_reduction,x, kind="weak") / 100
+        return inverse_percentile(list_reduction,x)
             
 def sort_promo(df):
     today_date = dt.date.today()
