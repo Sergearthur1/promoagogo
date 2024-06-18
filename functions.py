@@ -141,7 +141,7 @@ def read_string_dict_list(reponse_str):
     return reponse
     
 
-def get_new_code_promo():
+def get_new_code_promo(api_key):
     df_new_code_promo = pd.DataFrame(
         data={
             "code": [],
@@ -155,7 +155,7 @@ def get_new_code_promo():
         },
         index = [],
     )
-    client = OpenAI()
+    client = OpenAI(api_key=OPENAI_API_KEY)
     prompt = """trouve moi dans le texte suivant des codes promotionnels en formatant ta réponse au format d'une liste de dictionnaire python comme suit [{"code": "", "dates": "","lien": "", "description de l'offre en 1 phrase": "", "marque": ""}], et si il n'y a pas de code promotionel renvoyer la phrase: pas de code."""
     today_date = dt.date.today()
     urls = get_trends_url()
