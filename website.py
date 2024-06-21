@@ -93,7 +93,8 @@ if st.sidebar.button("clean data"):
     else:
         clean_historical_urls(dt.datetime.combine(dt.date.today() - dt.timedelta(days=50), dt.datetime.min.time()))
         clean_promos(dt.datetime.combine(dt.date.today() - dt.timedelta(days=50), dt.datetime.min.time()))
-        st.sidebar.write("cleaned!")
+        git_commit("promos.csv")
+        st.sidebar.write("cleaned & commited!")
 
 if (st.sidebar.button("update categories")) or st.session_state["in_cat_update"]:
     if not check_password():
