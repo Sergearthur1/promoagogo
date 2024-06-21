@@ -46,6 +46,39 @@ def get_trends_url():
             )
     return urls
 
+def get_trends_url_2(api_key):
+    url = "https://www.googleapis.com/youtube/v3/videos"
+
+    # Paramètres de la requête
+    params = {
+        'part': "id,snippet",
+        'chart': "mostPopular",
+        'regionCode': "FR",
+        'maxResults': 50,
+        'key': api_key,
+    }
+
+    # Faire la requête GET
+    response = requests.get(url, params=params)
+    
+    # Vérifier si la requête a réussi
+    if response.status_code == 200:
+        data = response.json()
+        
+        # Extraire les URLs des vidéos
+        video_urls = []
+        for item in data["items"]:
+            video_id = item['id']
+            ab_channel = item["snippet"]['channelTitle']
+            video_url = f"https://www.youtube.com/watch?v={video_id}&ab_channel={ab_channel}"
+            if "Topic" not in ab_channel:
+                video_urls.append(video_url)
+        return video_urls
+    else:
+        print(f"Error: {response.status_code}")
+        print(response.json())
+        return []
+
 def get_pourcent(phrase):
     index = phrase.find("%")
     if index == -1:
