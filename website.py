@@ -81,7 +81,9 @@ if st.sidebar.button("update data"):
             new_df_cd_promo = old_df_cd_promo.append(df_cd_promo,sort=False)
         new_df_cd_promo["reduction (time)"] = new_df_cd_promo["description de l'offre en 1 phrase"].apply(get_period_intensity)
         new_df_cd_promo = sort_promo(new_df_cd_promo)
-        new_df_cd_promo.to_csv(f"{os.getcwd()}/promos.csv", index=False)
+        new_df_cd_promo.to_csv("promos.csv", index=False)
+        git_password = st.secrets["git_password"]
+        git_commit("promos.csv",git_password)
         new_df_cd_promo["description de l'offre"] = new_df_cd_promo["description de l'offre en 1 phrase"]
         new_df_cd_promo = new_df_cd_promo[["code","marque", "description de l'offre", "lien", "dates"]]
         st.sidebar.write("updated!")
@@ -94,10 +96,8 @@ if st.sidebar.button("clean data"):
         clean_historical_urls(dt.datetime.combine(dt.date.today() - dt.timedelta(days=50), dt.datetime.min.time()))
         clean_promos(dt.datetime.combine(dt.date.today() - dt.timedelta(days=50), dt.datetime.min.time()))
         git_password = st.secrets["git_password"]
-        git_username = st.secrets["git_username"]
-        cleaned_df = pd.read_csv("promos.csv",index_col=False)
-        cleaned_df.to_csv("cleaned_promos.csv")
-        git_commit("cleaned_promos.csv", git_username, git_password)
+        git_commit("promos.csv",git_password)
+        git_commit("historical_urls.csv",git_password)
         st.sidebar.write("cleaned & commited!")
 
 if (st.sidebar.button("update categories")) or st.session_state["in_cat_update"]:
@@ -106,6 +106,8 @@ if (st.sidebar.button("update categories")) or st.session_state["in_cat_update"]
     else:
         st.session_state["in_cat_update"] = True
         cat_updater()
+        git_password = st.secrets["git_password"]
+        git_commit("categorie_to_marque.npy",git_password)
         st.sidebar.write("categories updated!")
 st.sidebar.markdown("----------------------------")          
 selected_rows = []
