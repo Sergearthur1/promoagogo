@@ -279,8 +279,4 @@ def git_commit(file_name, username, password):
     repo.index.commit(f"update {file_name}| {date}")
     origin = repo.remote(name='origin')
     origin.set_url(f"https://{password}@github.com/sergearthur1/promoagogo.git")
-    print("list commit:")
     origin.push(refspec=f"HEAD:refs/heads/{repo.active_branch.name}")
-    for commit in repo.iter_commits(max_count=5):
-            print(f"- {commit.message}")
-    teub = username["ZER"]
