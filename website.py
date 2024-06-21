@@ -95,7 +95,7 @@ if st.sidebar.button("clean data"):
         clean_promos(dt.datetime.combine(dt.date.today() - dt.timedelta(days=50), dt.datetime.min.time()))
         git_password = st.secrets["git_password"]
         git_username = st.secrets["git_username"]
-        cleaned_df = full_data
+        cleaned_df = pd.read_csv("promos.csv",index_col=False)
         cleaned_df.to_csv("cleaned_promos.csv")
         git_commit("cleaned_promos.csv", git_username, git_password)
         st.sidebar.write("cleaned & commited!")
