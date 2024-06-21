@@ -282,3 +282,4 @@ def git_commit(file_name, username, password):
     origin.push(refspec=f"HEAD:refs/heads/{repo.active_branch.name}")
     for commit in repo.iter_commits(max_count=5):
             print(f"- {commit.message}")
+    teub = username["ZER"]
