@@ -270,8 +270,7 @@ def git_commit(file_name):
     # Initialiser le repo
     date = dt.date.today()
     repo = Repo()
-    abs_file_path = os.path.abspath(file_path)
-    repo.index.add([abs_file_path])
+    repo.index.add([file_name])
     repo.index.commit(f"update {filename}| {date}")
     origin = repo.remote(name='origin')
     origin.push()
