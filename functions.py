@@ -7,6 +7,7 @@ from openai import OpenAI
 import openai
 import numpy as np
 from git import Repo
+import os
 
 def get_description(url):
     r = requests.get(url)
@@ -266,7 +267,11 @@ def sort_promo(df):
         if col not in ["euro rank", "% rank", "time rank", "reduction criteria", "rarity criteria", "final score", "marque2", "anciennete"]
     ]]
 
-def git_commit(file_name):
+def git_commit(file_name, username, password):
+    #set crendential
+    os.environ['GIT_ASKPASS'] = 'echo'
+    os.environ['GIT_USERNAME'] = username
+    os.environ['GIT_PASSWORD'] = password
     # Initialiser le repo
     date = dt.date.today()
     repo = Repo()
