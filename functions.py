@@ -274,6 +274,7 @@ def git_commit(file_name, username, password):
     # Initialiser le repo
     date = dt.datetime.now()
     repo = Repo()
+    repo.git.checkout('main')
     repo.index.add([file_name])
     repo.index.commit(f"update {file_name}| {date}")
     origin = repo.remote(name='origin')
