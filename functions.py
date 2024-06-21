@@ -277,4 +277,4 @@ def git_commit(file_name, username, password):
     repo.index.add([file_name])
     repo.index.commit(f"update {file_name}| {date}")
     origin = repo.remote(name='origin')
-    origin.push()
+    origin.push(refspec=f"HEAD:refs/heads/{repo.active_branch.name}")
