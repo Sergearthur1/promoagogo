@@ -272,10 +272,12 @@ def git_commit(file_name, username, password):
     os.environ['GIT_ASKPASS'] = 'echo'
     os.environ['GIT_TOKEN'] = password
     # Initialiser le repo
-    date = dt.date.today()
+    date = dt.datetime.now()
     repo = Repo()
     repo.index.add([file_name])
     repo.index.commit(f"update {file_name}| {date}")
     origin = repo.remote(name='origin')
     origin.set_url(f"https://{password}@github.com/sergearthur1/promoagogo.git")
     origin.push(refspec=f"HEAD:refs/heads/{repo.active_branch.name}")
+    for commit in repo.iter_commits(max_count=5):
+            print(f"- {commit.message}")
