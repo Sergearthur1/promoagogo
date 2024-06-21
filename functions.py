@@ -271,6 +271,6 @@ def git_commit(file_name):
     date = dt.date.today()
     repo = Repo()
     repo.index.add([file_name])
-    repo.index.commit(f"update {filename}| {date}")
+    repo.index.commit(f"update {file_name}| {date}")
     origin = repo.remote(name='origin')
     origin.push()
