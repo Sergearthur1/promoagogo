@@ -6,6 +6,7 @@ import os
 from openai import OpenAI
 import openai
 import numpy as np
+from git import Repo
 
 def get_description(url):
     r = requests.get(url)
@@ -264,4 +265,13 @@ def sort_promo(df):
         col for col in df 
         if col not in ["euro rank", "% rank", "time rank", "reduction criteria", "rarity criteria", "final score", "marque2", "anciennete"]
     ]]
-        
+
+def git_commit(file_name):
+    # Initialiser le repo
+    date = dt.date.today()
+    repo = Repo()
+    abs_file_path = os.path.abspath(file_path)
+    repo.index.add([abs_file_path])
+    repo.index.commit(f"update {filename}| {date}")
+    origin = repo.remote(name='origin')
+    origin.push()
