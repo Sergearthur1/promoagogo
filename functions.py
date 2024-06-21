@@ -267,7 +267,7 @@ def sort_promo(df):
         if col not in ["euro rank", "% rank", "time rank", "reduction criteria", "rarity criteria", "final score", "marque2", "anciennete"]
     ]]
 
-def git_commit(file_name, username, password):
+def git_commit(file_name, password):
     #set crendential
     os.environ['GIT_ASKPASS'] = 'echo'
     os.environ['GIT_TOKEN'] = password
