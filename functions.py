@@ -270,8 +270,7 @@ def sort_promo(df):
 def git_commit(file_name, username, password):
     #set crendential
     os.environ['GIT_ASKPASS'] = 'echo'
-    os.environ['GIT_USERNAME'] = username
-    os.environ['GIT_PASSWORD'] = password
+    os.environ['GIT_TOKEN'] = password
     # Initialiser le repo
     date = dt.date.today()
     repo = Repo()
