@@ -72,7 +72,7 @@ if st.sidebar.button("update data"):
         st.stop()
     else:
         gpt_api_key = st.secrets["gpt_api_key"]
-        youtube_api_key = st.secrets["youtube_api_key"]
+        youtube_api_key = st.secrets["youtube_key"]
         df_cd_promo = get_new_code_promo(gpt_api_key, youtube_api_key)
         old_df_cd_promo = pd.read_csv(f"{os.getcwd()}/promos.csv",index_col=False)
         if df_cd_promo.empty:
