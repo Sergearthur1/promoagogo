@@ -279,5 +279,6 @@ def git_commit(file_name, username, password):
     origin = repo.remote(name='origin')
     origin.set_url(f"https://{password}@github.com/sergearthur1/promoagogo.git")
     origin.push(refspec=f"HEAD:refs/heads/{repo.active_branch.name}")
+    print("list commit:")
     for commit in repo.iter_commits(max_count=5):
             print(f"- {commit.message}")
