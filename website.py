@@ -84,6 +84,7 @@ if st.sidebar.button("update data"):
         new_df_cd_promo.to_csv("promos.csv", index=False)
         git_password = st.secrets["git_password"]
         git_commit("promos.csv",git_password)
+        git_commit("historical_urls.csv",git_password)
         new_df_cd_promo["description de l'offre"] = new_df_cd_promo["description de l'offre en 1 phrase"]
         new_df_cd_promo = new_df_cd_promo[["code","marque", "description de l'offre", "lien", "dates"]]
         st.sidebar.write("updated!")
