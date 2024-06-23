@@ -23,7 +23,7 @@ def app():
     if st.button("cliquez pour valider vos choix"):
         for mark in selected_options:
             for cat in selected_options[mark]:
-                if cat.split(" + ")[0] != "autre":
-                    st.session_state["cat_dict"][cat.split(" + ")[0]].append(mark)
+                #if cat.split(" + ")[0] != "autre":
+                st.session_state["cat_dict"][cat.split(" + ")[0]].append(mark)
         st.session_state["in_cat_update"] = False
         np.save("categorie_to_marque.npy", st.session_state["cat_dict"])
