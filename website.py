@@ -34,7 +34,7 @@ def check_password():
 def load_full_data():
     df = pd.read_csv("promos.csv")
     df["description de l'offre"] = df["description de l'offre en 1 phrase"]
-    df = df[["code","marque", "description de l'offre", "lien", "dates"]]
+    df = df[["marque", "description de l'offre","code", "lien", "dates"]]
     df.fillna("")
     return df
 
@@ -51,7 +51,7 @@ if "full_data" not in st.session_state:
     st.session_state["cat_dict"] = cat_dict
     st.session_state["in_cat_update"] = False
 
-st.title(":sparkles: Promo à gogo :sparkles:")
+st.title(":sparkles: code promotionnel :sparkles:")
 
 st.sidebar.image("logo.png")
 st.sidebar.write('Catégories:')
@@ -86,7 +86,7 @@ if st.sidebar.button("update data"):
         git_commit("promos.csv",git_password)
         git_commit("historical_urls.csv",git_password)
         new_df_cd_promo["description de l'offre"] = new_df_cd_promo["description de l'offre en 1 phrase"]
-        new_df_cd_promo = new_df_cd_promo[["code","marque", "description de l'offre", "lien", "dates"]]
+        new_df_cd_promo = new_df_cd_promo[["marque", "description de l'offre","code", "lien", "dates"]]
         st.sidebar.write("updated!")
         st.session_state["full_data"] = new_df_cd_promo
 
