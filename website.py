@@ -54,6 +54,11 @@ if "full_data" not in st.session_state:
 st.title(":sparkles: code promotionnel :sparkles:")
 
 st.sidebar.image("logo.png")
+option_mark = st.sidebar.selectbox(
+    "Choisissez une marque",
+    list(st.session_state["full_data"]["marque"].unique()),
+    index=None,
+) 
 st.sidebar.write('Catégories:')
 option_0 = st.sidebar.checkbox("Tous", value=True)
 option_1 = st.sidebar.checkbox("Mode")
@@ -110,32 +115,36 @@ if (st.sidebar.button("update categories")) or st.session_state["in_cat_update"]
         git_password = st.secrets["git_password"]
         git_commit("categorie_to_marque.npy",git_password)
         st.sidebar.write("categories updated!")
-st.sidebar.markdown("----------------------------")          
-selected_rows = []
-for index,row in st.session_state["full_data"].iterrows():
-    selected_tamp = False
-    if option_0:
-        selected_tamp = True
-    if (option_1) and (row["marque"] in st.session_state["cat_dict"]["mode"]):
-        selected_tamp = True
-    if (option_2) and (row["marque"] in st.session_state["cat_dict"]["technologie et gaming"]):
-        selected_tamp = True
-    if (option_3) and (row["marque"] in st.session_state["cat_dict"]["santé & cosmétique"]):
-        selected_tamp = True
-    if (option_4) and (row["marque"] in st.session_state["cat_dict"]["maison"]):
-        selected_tamp = True
-    if (option_5) and (row["marque"] in st.session_state["cat_dict"]["sport et loisirs"]):
-        selected_tamp = True
-    if (option_6) and (row["marque"] in st.session_state["cat_dict"]["automobile"]):
-        selected_tamp = True
-    if (option_7) and (row["marque"] in st.session_state["cat_dict"]["animaux"]):
-        selected_tamp = True
-    if (option_8) and (row["marque"] in st.session_state["cat_dict"]["nutrition"]):
-        selected_tamp = True
-    if (option_9) and (row["marque"] in st.session_state["cat_dict"]["finance"]):
-        selected_tamp = True
-    selected_rows.append(selected_tamp)
-data = st.session_state["full_data"][selected_rows]
+st.sidebar.markdown("----------------------------")  
+if option_mark is not None:
+    data = st.session_state["full_data"][st.session_state["full_data"]["marque"] == option_mark]
+else:
+    selected_rows = []
+    for index,row in st.session_state["full_data"].iterrows():
+        selected_tamp = False
+            selceted_tamp = True
+        if option_0:
+            selected_tamp = True
+        if (option_1) and (row["marque"] in st.session_state["cat_dict"]["mode"]):
+            selected_tamp = True
+        if (option_2) and (row["marque"] in st.session_state["cat_dict"]["technologie et gaming"]):
+            selected_tamp = True
+        if (option_3) and (row["marque"] in st.session_state["cat_dict"]["santé & cosmétique"]):
+            selected_tamp = True
+        if (option_4) and (row["marque"] in st.session_state["cat_dict"]["maison"]):
+            selected_tamp = True
+        if (option_5) and (row["marque"] in st.session_state["cat_dict"]["sport et loisirs"]):
+            selected_tamp = True
+        if (option_6) and (row["marque"] in st.session_state["cat_dict"]["automobile"]):
+            selected_tamp = True
+        if (option_7) and (row["marque"] in st.session_state["cat_dict"]["animaux"]):
+            selected_tamp = True
+        if (option_8) and (row["marque"] in st.session_state["cat_dict"]["nutrition"]):
+            selected_tamp = True
+        if (option_9) and (row["marque"] in st.session_state["cat_dict"]["finance"]):
+            selected_tamp = True
+        selected_rows.append(selected_tamp)
+    data = st.session_state["full_data"][selected_rows]
 st.dataframe(
     data.style.applymap(lambda x: 'background-color : #C6C8C9'),
     hide_index=True,
