@@ -144,7 +144,7 @@ else:
         selected_rows.append(selected_tamp)
     data = st.session_state["full_data"][selected_rows]
 st.dataframe(
-    data.style.applymap(lambda x: 'background-color : #C6C8C9'),
+    data.style.applymap(lambda x: 'background-color : grey'),
     hide_index=True,
     width=5000,
     height=700,
