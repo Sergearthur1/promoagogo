@@ -122,7 +122,6 @@ else:
     selected_rows = []
     for index,row in st.session_state["full_data"].iterrows():
         selected_tamp = False
-            selected_tamp = True
         if option_0:
             selected_tamp = True
         if (option_1) and (row["marque"] in st.session_state["cat_dict"]["mode"]):
