@@ -137,12 +137,11 @@ for index,row in st.session_state["full_data"].iterrows():
     selected_rows.append(selected_tamp)
 data = st.session_state["full_data"][selected_rows]
 st.dataframe(
-    data,
+    data.style.applymap(lambda x: 'background-color : gray'),
     hide_index=True,
     width=5000,
     height=700,
     column_config={
         "lien": st.column_config.LinkColumn("lien"),
     },
-    background-color="gray"
 )
