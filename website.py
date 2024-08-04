@@ -56,8 +56,7 @@ st.title(":sparkles: code promotionnel :sparkles:")
 st.sidebar.image("logo.png")
 option_mark = st.sidebar.selectbox(
     "Choisissez une marque",
-    [str(val) for val in list(st.session_state["full_data"]["marque"].unique()) if val is not None],
-    index=None,
+    ["pas de marque choisis"] + [str(val) for val in list(st.session_state["full_data"]["marque"].unique()) if val is not None],
 ) 
 st.sidebar.write('Catégories:')
 option_0 = st.sidebar.checkbox("Tous", value=True)
@@ -116,7 +115,7 @@ if (st.sidebar.button("update categories")) or st.session_state["in_cat_update"]
         git_commit("categorie_to_marque.npy",git_password)
         st.sidebar.write("categories updated!")
 st.sidebar.markdown("----------------------------")  
-if option_mark is not None:
+if option_mark != "pas de marque choisis":
     data = st.session_state["full_data"][st.session_state["full_data"]["marque"] == option_mark]
 else:
     selected_rows = []
