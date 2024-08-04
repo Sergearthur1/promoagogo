@@ -144,4 +144,5 @@ st.dataframe(
     column_config={
         "lien": st.column_config.LinkColumn("lien"),
     },
+    background-color="gray"
 )
