@@ -56,8 +56,9 @@ st.title(":sparkles: code promotionnel :sparkles:")
 st.sidebar.image("logo.png")
 option_mark = st.sidebar.selectbox(
     "Choisissez une marque",
-    list(st.session_state["full_data"]["marque"].unique()),
+    [str(val) for val in list(st.session_state["full_data"]["marque"].unique()) if val is not None],
     index=None,
+    placeholder="nom de la marque",
 ) 
 st.sidebar.write('Catégories:')
 option_0 = st.sidebar.checkbox("Tous", value=True)
